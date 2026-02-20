@@ -133,18 +133,22 @@ export default function ContactForm() {
 
     setFormState('submitting');
     try {
+      const payload = new URLSearchParams({
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        email: formData.email.trim().toLowerCase(),
+        phone: formData.phone.trim(),
+        notes: formData.notes.trim(),
+      });
+
       await fetch(WEBHOOK_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
         mode: 'no-cors',
-        body: JSON.stringify({
-          firstName: formData.firstName.trim(),
-          lastName: formData.lastName.trim(),
-          email: formData.email.trim().toLowerCase(),
-          phone: formData.phone.trim(),
-          notes: formData.notes.trim(),
-        }),
+        keepalive: true,
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: payload.toString(),
       });
+
       window.location.href = '/thank-you';
     } catch {
       setFormState('error');

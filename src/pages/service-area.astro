@@ -188,22 +188,6 @@ const countyData = {
               </div>
             </div>
 
-            <!-- ── COUNTY CHIPS ── -->
-            <div class="sa-chips" role="list" aria-label="Service area counties">
-              <button class="sa-chip" data-county="weber"    type="button">
-                <span class="sa-chip-dot" style="background:#1E6978"></span>Weber County
-              </button>
-              <button class="sa-chip" data-county="davis"    type="button">
-                <span class="sa-chip-dot" style="background:#1E9696"></span>Davis County
-              </button>
-              <button class="sa-chip" data-county="saltlake" type="button">
-                <span class="sa-chip-dot" style="background:#3CE1E1"></span>Salt Lake County
-              </button>
-              <button class="sa-chip" data-county="utah"     type="button">
-                <span class="sa-chip-dot" style="background:#2BBFBF"></span>Utah County
-              </button>
-            </div>
-
           </div><!-- /#sa-module -->
         </div><!-- /.reveal-right -->
       </div>
@@ -529,58 +513,9 @@ const countyData = {
       margin: 0 -0.1rem;
     }
 
-    /* ── Chips ── */
-    .sa-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-
-    .sa-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.4rem 0.875rem;
-      border-radius: 9999px;
-      border: 1.5px solid rgba(60,225,225,0.2);
-      background: white;
-      font-family: var(--font-body);
-      font-size: 0.8125rem;
-      font-weight: 600;
-      color: var(--color-navy);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      min-height: 40px;
-    }
-
-    .sa-chip:hover,
-    .sa-chip:focus-visible,
-    .sa-chip.is-active {
-      background: var(--color-navy);
-      color: white;
-      outline: none;
-    }
-
-    .sa-chip[data-county="weber"].is-active    { border-color: #1E6978; box-shadow: 0 0 0 2px #1E6978; }
-    .sa-chip[data-county="davis"].is-active    { border-color: #1E9696; box-shadow: 0 0 0 2px #1E9696; }
-    .sa-chip[data-county="saltlake"].is-active { border-color: #3CE1E1; box-shadow: 0 0 0 2px #3CE1E1; }
-    .sa-chip[data-county="utah"].is-active     { border-color: #2BBFBF; box-shadow: 0 0 0 2px #2BBFBF; }
-
-    .sa-chip:focus-visible {
-      outline: 2px solid #3CE1E1;
-      outline-offset: 2px;
-    }
-
-    .sa-chip-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
     /* ── Reduced motion ── */
     @media (prefers-reduced-motion: reduce) {
-      .sa-band, .sa-band-indicator, .sa-chip, .sa-band-badge, .sa-band-name, .sa-band-cities {
+      .sa-band, .sa-band-indicator, .sa-band-badge, .sa-band-name, .sa-band-cities {
         transition: none;
       }
     }
@@ -598,7 +533,6 @@ const countyData = {
 
       // Elements
       const bands = document.querySelectorAll('.sa-band');
-      const chips = document.querySelectorAll('.sa-chip');
       const infoDefault = document.getElementById('sa-info-default');
       const infoActive  = document.getElementById('sa-info-active');
       const infoName    = document.getElementById('sa-info-name');
@@ -617,11 +551,6 @@ const countyData = {
           b.classList.toggle('is-active', b.dataset.county === countyId);
         });
 
-        // Update chip active states
-        chips.forEach(c => {
-          c.classList.toggle('is-active', c.dataset.county === countyId);
-        });
-
         // Update info panel
         const d = data[countyId];
         if (d && infoName && infoNote && infoCities && infoDot && infoDefault && infoActive) {
@@ -629,8 +558,8 @@ const countyData = {
           infoNote.textContent = d.note;
           infoDot.style.background = d.color;
           infoCities.innerHTML = d.cities
-            .map(c => `<span class="sa-city-tag">${c}</span>`)
-            .join('<span class="sa-city-sep">,</span>');
+            .map((c, i) => `<span class="sa-city-tag">${c}${i < d.cities.length - 1 ? ',' : ''}</span>`)
+            .join('');
           infoDefault.style.display = 'none';
           infoActive.style.display  = 'block';
         }
@@ -639,7 +568,6 @@ const countyData = {
       function deactivate() {
         currentCounty = null;
         bands.forEach(b => b.classList.remove('is-active'));
-        chips.forEach(c => c.classList.remove('is-active'));
         if (infoDefault && infoActive) {
           infoDefault.style.display = 'flex';
           infoActive.style.display  = 'none';
@@ -661,19 +589,6 @@ const countyData = {
         });
       });
 
-      // ── Wire chips ──
-      chips.forEach(chip => {
-        const id = chip.dataset.county;
-        if (!id) return;
-        chip.addEventListener('mouseenter', () => activate(id));
-        chip.addEventListener('mouseleave', deactivate);
-        chip.addEventListener('focus',      () => activate(id));
-        chip.addEventListener('blur',       deactivate);
-        chip.addEventListener('click',      () => activate(id));
-        chip.addEventListener('keydown', e => {
-          if (e.key === 'Escape') deactivate();
-        });
-      });
     })();
   </script>
 

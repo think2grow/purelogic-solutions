@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const features = [
+  { title: 'Custom Cabinetry & Built-Ins', desc: 'Semi-custom and fully custom cabinetry designed for your space, your storage needs, and your aesthetic.' },
+  { title: 'Countertop Installation', desc: 'Quartz, granite, marble, butcher block — we work with all materials and handle templating, fabrication coordination, and installation.' },
+  { title: 'Tile Backsplash', desc: 'From subway tile to intricate mosaic patterns, our tile work is precise, clean, and built to last.' },
+  { title: 'Appliance Integration', desc: 'Seamless integration of your new or existing appliances, including panel-ready refrigerators, built-in ovens, and range hoods.' },
+  { title: 'Lighting Design & Installation', desc: 'Under-cabinet lighting, recessed lighting, pendant fixtures, and dimmer systems that transform how your kitchen feels.' },
+  { title: 'Layout Redesign', desc: 'Structural changes, island additions, and full layout reconfiguration to maximize your kitchen\'s functionality.' },
+];
+
+const faqs = [
+  { q: 'How long does a kitchen remodel take?', a: 'A typical kitchen remodel takes 6–12 weeks from demolition to completion. Larger projects with structural changes or custom cabinetry may take longer. We provide a detailed timeline in your estimate.' },
+  { q: 'Can I stay in my home during a kitchen remodel?', a: 'Yes, in most cases. We set up a temporary kitchen area and work to minimize disruption to your daily routine. We discuss logistics during the planning phase.' },
+  { q: 'What is the ROI on a kitchen remodel in Utah?', a: 'Kitchen remodels typically return 60–80% of their cost in home value. Beyond the financial return, the daily quality-of-life improvement is significant.' },
+];
+---
+
+<BaseLayout
+  title="Kitchen Remodeling Utah | Pure Logic Solutions"
+  description="Expert kitchen remodeling across the Wasatch Front. Custom cabinetry, quartz countertops, tile backsplash, and full layout redesigns. Utah Licensed #14253923-5501."
+>
+
+  <!-- PAGE HERO -->
+  <section class="relative py-24 md:py-32 overflow-hidden" style="background: var(--color-navy)">
+    <div class="absolute inset-0 z-0">
+      <img src="/images/kitchen-hero.jpg" alt="Kitchen remodeling Utah - Pure Logic Solutions" class="w-full h-full object-cover" loading="eager" fetchpriority="high" />
+      <div class="absolute inset-0" style="background: linear-gradient(135deg, rgba(10,35,66,0.9) 0%, rgba(0,77,64,0.7) 100%)"></div>
+    </div>
+    <div class="container-site relative z-10">
+      <div class="max-w-2xl">
+        <span class="section-label-light">The Heart of Your Home, Reimagined</span>
+        <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">Kitchen Remodeling in<br/><span style="color: var(--color-cyan)">Utah</span></h1>
+        <p class="text-lg leading-relaxed mb-8" style="color: rgba(255,255,255,0.75)">Premium kitchen remodeling across the Wasatch Front. Custom cabinetry, quartz countertops, tile backsplash, and full layout redesigns — done right, on time, and on budget.</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="/contact" class="btn-primary text-sm px-8 py-4">
+            Get a Free Estimate
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="tel:+18019058175" class="btn-ghost-white text-sm px-8 py-4">Call (801) 905-8175</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO + FEATURES -->
+  <section class="section-padding" style="background: var(--color-off-white)">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+        <div class="reveal-left">
+          <span class="section-label">The Pure Logic Approach</span>
+          <h2 class="text-3xl font-black mb-6" style="color: var(--color-navy)">Kitchen Remodeling Done Right</h2>
+          <div class="divider-brass"></div>
+          <p class="text-base leading-relaxed mb-6" style="color: var(--color-body-text)">The kitchen is the most-used room in your home — and the most impactful renovation you can make. A well-executed kitchen remodel does not just look beautiful; it changes how you live. Pure Logic Solutions brings the same structured process and uncompromising standards to every kitchen project, whether you are refreshing the finishes or completely reimagining the layout.</p>
+          <div class="p-5 rounded-lg mb-8" style="background: rgba(60,225,225,0.06); border-left: 4px solid var(--color-cyan-mid)">
+            <p class="text-sm font-semibold italic" style="color: var(--color-navy)">"Would we put it in our house?" — That is the question we ask about every material, every method, and every subcontractor on your project.</p>
+            <p class="text-xs font-bold mt-2" style="color: var(--color-cyan-mid)">— Jared Bayless, Founder</p>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <a href="/contact" class="btn-primary text-sm">Get a Free Estimate</a>
+            <a href="/process" class="btn-secondary text-sm">See Our Process</a>
+          </div>
+        </div>
+        <div class="reveal-right">
+          <h3 class="text-lg font-bold mb-6" style="color: var(--color-navy); font-family: var(--font-heading)">What's Included</h3>
+          <div class="space-y-4">
+            {features.map((feature) => (
+              <div class="flex gap-4 p-5 rounded-lg" style="background: white; border: 1px solid rgba(60,225,225,0.08)">
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style="background: rgba(60,225,225,0.1)">
+                  <svg class="w-5 h-5" style="color: var(--color-cyan-mid)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                </div>
+                <div>
+                  <div class="font-bold text-sm mb-1" style="color: var(--color-navy); font-family: var(--font-heading)">{feature.title}</div>
+                  <div class="text-sm leading-relaxed" style="color: var(--color-body-text)">{feature.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST SIGNALS -->
+  <section class="py-12" style="background: var(--color-navy)">
+    <div class="container-site">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal-stagger">
+        {[
+          { value: 'Licensed', label: 'Utah #14253923-5501' },
+          { value: 'Insured', label: 'Fully Covered' },
+          { value: 'Permitted', label: 'Every Project' },
+          { value: 'Warranted', label: 'All Workmanship' },
+        ].map((item) => (
+          <div class="text-center">
+            <div class="text-xl font-black text-white mb-1" style="font-family: var(--font-heading)">{item.value}</div>
+            <div class="text-xs" style="color: rgba(255,255,255,0.7)">{item.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-padding" style="background: white">
+    <div class="container-site">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12 reveal">
+          <span class="section-label">Common Questions</span>
+          <h2 class="text-3xl font-black" style="color: var(--color-navy)">Kitchen Remodeling FAQs</h2>
+        </div>
+        <div class="space-y-4 reveal-stagger">
+          {faqs.map((faq) => (
+            <details class="group rounded-lg overflow-hidden" style="background: var(--color-off-white); border: 1px solid rgba(60,225,225,0.1)">
+              <summary class="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-base" style="color: var(--color-navy); font-family: var(--font-heading)">
+                <span>{faq.q}</span>
+                <svg class="w-5 h-5 shrink-0 ml-4 transition-transform group-open:rotate-180" style="color: var(--color-cyan-mid)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+              </summary>
+              <div class="px-6 pb-6 text-sm leading-relaxed" style="color: var(--color-body-text); border-top: 1px solid rgba(60,225,225,0.08)">
+                <div class="pt-4">{faq.a}</div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding" style="background: var(--color-navy)">
+    <div class="container-site">
+      <div class="max-w-2xl mx-auto text-center reveal">
+        <span class="section-label-light">Ready to Start?</span>
+        <h2 class="text-3xl font-black text-white mb-6">Get Your Free Kitchen Remodel Estimate</h2>
+        <p class="mb-8" style="color: rgba(255,255,255,0.7)">No obligation. No pressure. Just an honest conversation about your kitchen and what it would take to do it right. We respond within 24 hours.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="btn-primary px-8 py-4">
+            Get a Free Estimate
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="tel:+18019058175" class="btn-ghost-white px-8 py-4">Call (801) 905-8175</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Thank You — We'll Be In Touch | Pure Logic Solutions"
+  description="Thank you for reaching out to Pure Logic Solutions. Jared will personally review your project and respond within 24 hours."
+>
+
+  <!-- Full-page centered thank you section -->
+  <section
+    class="min-h-screen flex items-center justify-center py-24"
+    style="background: var(--color-navy)"
+  >
+    <!-- Subtle grid pattern -->
+    <div class="absolute inset-0 z-0 opacity-5" style="background-image: linear-gradient(rgba(60,225,225,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(60,225,225,0.3) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none;"></div>
+
+    <div class="container-site relative z-10">
+      <div class="max-w-2xl mx-auto text-center">
+
+        <!-- Animated check icon -->
+        <div
+          class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8"
+          style="background: rgba(60,225,225,0.12); border: 2px solid rgba(60,225,225,0.4);"
+          id="check-circle"
+        >
+          <svg
+            class="w-12 h-12"
+            style="color: var(--color-cyan)"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            stroke-width="2.5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+
+        <!-- Label -->
+        <span class="section-label-light">Request Received</span>
+
+        <!-- Headline -->
+        <h1 class="text-4xl md:text-5xl font-black text-white mb-5 leading-tight">
+          You're All Set.<br/>
+          <span style="color: var(--color-cyan)">We'll Be In Touch.</span>
+        </h1>
+
+        <!-- Body -->
+        <p class="text-lg leading-relaxed mb-4" style="color: rgba(255,255,255,0.72)">
+          Jared personally reviews every estimate request. You can expect to hear from him within <strong class="text-white">24 hours</strong> — usually the same day.
+        </p>
+        <p class="text-base leading-relaxed mb-12" style="color: rgba(255,255,255,0.55)">
+          In the meantime, feel free to explore our process, browse our services, or call us directly if you have an urgent need.
+        </p>
+
+        <!-- What happens next -->
+        <div
+          class="text-left p-8 rounded-xl mb-12"
+          style="background: rgba(255,255,255,0.04); border: 1px solid rgba(60,225,225,0.18);"
+        >
+          <h2 class="text-base font-black text-white mb-6 text-center" style="font-family: var(--font-heading); letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.8rem; color: var(--color-cyan)">
+            What Happens Next
+          </h2>
+          <div class="flex flex-col gap-5">
+            {[
+              { step: '01', title: 'Jared Reviews Your Request', desc: 'He reads every submission personally and prepares for your call.' },
+              { step: '02', title: 'Discovery Call — Within 24 Hours', desc: 'A quick, no-pressure conversation about your project, timeline, and goals.' },
+              { step: '03', title: 'Free Site Visit', desc: 'We come to you — no charge, no obligation — to see the space and understand the full scope.' },
+              { step: '04', title: 'Detailed Written Estimate', desc: 'You receive a fully itemized, line-by-line estimate. No vague numbers. No surprises.' },
+            ].map((item) => (
+              <div class="flex gap-4">
+                <div
+                  class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-xs font-black"
+                  style="background: rgba(60,225,225,0.12); border: 1px solid rgba(60,225,225,0.3); color: var(--color-cyan); font-family: var(--font-heading)"
+                >
+                  {item.step}
+                </div>
+                <div>
+                  <p class="font-bold text-sm mb-0.5 text-white" style="font-family: var(--font-heading)">{item.title}</p>
+                  <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.55)">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+          <a href="/" class="btn-primary px-8 py-4 text-sm">
+            Back to Home
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+            </svg>
+          </a>
+          <a href="/process" class="btn-ghost-cyan px-8 py-4 text-sm">
+            See Our Process
+          </a>
+        </div>
+
+        <!-- Direct contact fallback -->
+        <p class="text-sm" style="color: rgba(255,255,255,0.40)">
+          Need to reach us right now?
+          <a href="tel:+18019058175" style="color: var(--color-cyan); font-weight: 600"> Call (801) 905-8175</a>
+          &nbsp;or&nbsp;
+          <a href="mailto:Purelogicsolutionsutah@gmail.com" style="color: var(--color-cyan); font-weight: 600">send an email</a>.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  // Subtle entrance animation for the check circle
+  const circle = document.getElementById('check-circle');
+  if (circle) {
+    circle.style.transform = 'scale(0.5)';
+    circle.style.opacity = '0';
+    circle.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        circle.style.transform = 'scale(1)';
+        circle.style.opacity = '1';
+      });
+    });
+  }
+</script>

@@ -1,0 +1,164 @@
+---
+const navLinks = [
+  { href: '/services', label: 'Services' },
+  { href: '/process', label: 'Our Process' },
+  { href: '/about', label: 'About' },
+  { href: '/service-area', label: 'Service Area' },
+  { href: '/blog', label: 'Blog' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<!-- Trust Bar -->
+<div class="trust-bar py-2 hidden md:block">
+  <div class="container-site flex items-center justify-between">
+    <div class="flex items-center gap-6 text-xs" style="color: rgba(255,255,255,0.75)">
+      <span class="flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5 flex-shrink-0" style="color: var(--color-cyan)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+        <span style="color: var(--color-cyan)">Utah Licensed &amp; Insured</span>
+        <span style="color: rgba(255,255,255,0.3)">·</span>
+        <a href="https://secure.utah.gov/llv/search/index.html" target="_blank" rel="noopener" class="hover:text-white transition-colors" style="color: rgba(255,255,255,0.75)">License #14253923-5501</a>
+      </span>
+    </div>
+    <div class="flex items-center gap-4 text-xs" style="color: rgba(255,255,255,0.75)">
+      <a href="tel:+18019058175" class="flex items-center gap-1.5 hover:text-white transition-colors">
+        <svg class="w-3.5 h-3.5" style="color: var(--color-cyan)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+        </svg>
+        (801) 905-8175
+      </a>
+      <span style="color: rgba(255,255,255,0.3)">·</span>
+      <span>Mon–Fri 7am–6pm · Sat 8am–4pm</span>
+    </div>
+  </div>
+</div>
+
+<!-- Main Header -->
+<header id="main-header" class="sticky top-0 z-50 transition-all duration-300" style="background: white; border-bottom: 1px solid var(--color-warm-gray)">
+  <div class="container-site">
+    <div class="flex items-center justify-between h-16 md:h-20">
+
+      <!-- Logo: actual logo image -->
+      <a href="/" class="flex items-center group" aria-label="Pure Logic Solutions — Home">
+        <img
+          src="/images/pure-logic-logo-cropped.png"
+          alt="Pure Logic Solutions"
+          class="h-10 md:h-12 w-auto object-contain"
+          width="300"
+          height="72"
+          loading="eager"
+        />
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Main navigation">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-sm font-semibold tracking-wide transition-colors duration-200 relative group"
+            style={currentPath.startsWith(link.href)
+              ? 'color: var(--color-cyan-mid)'
+              : 'color: var(--color-navy)'}
+          >
+            {link.label}
+            <span
+              class="absolute -bottom-1 left-0 h-0.5 transition-all duration-300 group-hover:w-full"
+              style={`background: var(--color-cyan); width: ${currentPath.startsWith(link.href) ? '100%' : '0'}`}
+            ></span>
+          </a>
+        ))}
+      </nav>
+
+      <!-- CTA + Mobile Toggle -->
+      <div class="flex items-center gap-3">
+        <a href="tel:+18019058175" class="hidden md:flex items-center gap-2 text-sm font-semibold transition-colors" style="color: var(--color-navy); font-family: var(--font-heading)">
+          <svg class="w-4 h-4" style="color: var(--color-cyan-mid)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+          </svg>
+          (801) 905-8175
+        </a>
+        <a href="/contact" class="btn-primary text-xs px-4 py-2.5 inline-flex">
+          Free Estimate
+        </a>
+        <!-- Mobile menu button -->
+        <button
+          id="mobile-menu-btn"
+          class="lg:hidden p-2 rounded-md transition-colors"
+          style="color: var(--color-navy)"
+          aria-label="Toggle mobile menu"
+          aria-expanded="false"
+        >
+          <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden" style="background: white; border-top: 1px solid var(--color-warm-gray)">
+    <div class="container-site py-6 flex flex-col gap-4">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="text-base font-semibold py-3 border-b transition-colors hover:pl-2"
+          style="color: var(--color-navy); border-color: var(--color-warm-gray); font-family: var(--font-heading); transition: padding 0.2s ease, color 0.2s ease"
+        >
+          {link.label}
+        </a>
+      ))}
+      <div class="pt-4 flex flex-col gap-3" style="padding-bottom: env(safe-area-inset-bottom, 0px)">
+        <a href="tel:+18019058175" class="btn-ghost-cyan text-center justify-center">
+          Call (801) 905-8175
+        </a>
+        <a href="/contact" class="btn-secondary text-center justify-center">
+          Get a Free Estimate
+        </a>
+      </div>
+      <div class="pt-2 text-xs text-center" style="color: var(--color-mid-gray)">
+        Utah Licensed #14253923-5501 · Fully Insured
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    if (isOpen) {
+      menu?.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('mobile-nav-open');
+    } else {
+      menu?.classList.remove('hidden');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('mobile-nav-open');
+    }
+  });
+
+  // Add shadow + slight bg tint on scroll
+  const header = document.getElementById('main-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      header?.style.setProperty('box-shadow', '0 4px 24px rgba(13,27,42,0.10)');
+    } else {
+      header?.style.setProperty('box-shadow', 'none');
+    }
+  });
+</script>

@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pricingTiers = [
+  {
+    service: 'Kitchen Remodeling',
+    tiers: [
+      { label: 'Refresh', range: '$15,000 – $35,000', desc: 'Cabinet refacing or painting, new countertops, backsplash, fixtures, and hardware. Same layout.' },
+      { label: 'Mid-Range', range: '$35,000 – $80,000', desc: 'New semi-custom cabinetry, quartz countertops, tile backsplash, new appliances, updated lighting.' },
+      { label: 'Premium', range: '$80,000 – $150,000+', desc: 'Full custom cabinetry, layout changes, high-end appliances, custom tile, structural modifications.' },
+    ],
+    roi: '60–80%',
+  },
+  {
+    service: 'Bathroom Remodeling',
+    tiers: [
+      { label: 'Powder Room / Secondary', range: '$8,000 – $18,000', desc: 'New vanity, toilet, tile floor, fixtures, and paint in a smaller bathroom.' },
+      { label: 'Primary Bathroom', range: '$18,000 – $45,000', desc: 'Walk-in shower, new vanity, tile work, fixtures, and updated plumbing.' },
+      { label: 'Master Bath', range: '$45,000 – $90,000+', desc: 'Full custom tile, freestanding tub, frameless glass shower, heated floors, custom vanity.' },
+    ],
+    roi: '60–70%',
+  },
+  {
+    service: 'Basement Finishing',
+    tiers: [
+      { label: 'Basic Finish', range: '$25,000 – $45,000', desc: 'Open floor plan, framing, drywall, flooring, electrical, and paint. No bathroom.' },
+      { label: 'Standard Finish', range: '$45,000 – $75,000', desc: 'Defined rooms, bathroom addition, wet bar rough-in, full electrical and HVAC.' },
+      { label: 'Premium Finish', range: '$75,000 – $120,000+', desc: 'Full bathroom, home theater, custom built-ins, high-end finishes throughout.' },
+    ],
+    roi: '70–75%',
+  },
+  {
+    service: 'Home Additions',
+    tiers: [
+      { label: 'Room Addition', range: '$80,000 – $150,000', desc: 'Single room addition (bedroom, office, family room) with matching exterior.' },
+      { label: 'Suite Addition', range: '$150,000 – $300,000', desc: 'Master suite or multi-room addition with full bathroom and closet.' },
+      { label: 'Second Story / ADU', range: '$200,000 – $500,000+', desc: 'Full second story addition or detached ADU with all systems.' },
+    ],
+    roi: 'Significant Value Add',
+  },
+  {
+    service: 'Custom Home Builds',
+    tiers: [
+      { label: 'Standard Custom', range: '$200 – $280 / sq ft', desc: 'Quality finishes, standard systems, custom layout and design.' },
+      { label: 'Premium Custom', range: '$280 – $380 / sq ft', desc: 'High-end finishes, upgraded systems, custom millwork and tile.' },
+      { label: 'Luxury Custom', range: '$380+ / sq ft', desc: 'Top-tier everything — custom cabinetry, stone, smart home systems, premium fixtures.' },
+    ],
+    roi: 'Full Custom Value',
+  },
+];
+---
+
+<BaseLayout
+  title="Pricing Guide | Pure Logic Solutions Utah Contractor"
+  description="Transparent pricing ranges for kitchen remodeling, bathroom renovation, basement finishing, home additions, and custom homes in Utah. No hidden costs."
+>
+
+  <!-- PAGE HERO -->
+  <section class="relative py-16 md:py-32 overflow-hidden" style="background: var(--color-navy)">
+    <div class="container-site relative z-10">
+      <div class="max-w-2xl">
+        <span class="section-label-light">Transparent Pricing</span>
+        <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">What Does a<br/><span style="color: var(--color-cyan)">Remodel Cost?</span></h1>
+        <p class="text-lg leading-relaxed" style="color: rgba(255,255,255,0.75)">Honest investment ranges for every type of project we do. No vague answers, no bait-and-switch. These are real numbers based on current Utah market conditions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING DISCLAIMER -->
+  <section class="py-8" style="background: rgba(174,154,100,0.1); border-bottom: 1px solid rgba(174,154,100,0.2)">
+    <div class="container-site">
+      <div class="flex items-start gap-4 reveal">
+        <svg class="w-5 h-5 mt-0.5 shrink-0" style="color: var(--color-cyan)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <p class="text-sm" style="color: var(--color-navy)"><strong>Important note:</strong> These ranges represent typical projects in the Utah market as of 2025. Your actual project cost will depend on your specific scope, material selections, existing conditions, and location. The only way to get an accurate number is a free site visit and detailed estimate — which we provide at no cost.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING TABLES -->
+  <section class="section-padding" style="background: var(--color-off-white)">
+    <div class="container-site">
+      <div class="space-y-12">
+        {pricingTiers.map((service) => (
+          <div class="reveal">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+              <h2 class="text-2xl font-black" style="color: var(--color-navy); font-family: var(--font-heading)">{service.service}</h2>
+              <span class="text-sm px-4 py-1.5 rounded-full font-bold" style="background: rgba(60,225,225,0.1); color: var(--color-cyan-mid)">Avg. ROI: {service.roi}</span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {service.tiers.map((tier, i) => (
+                <div class={`p-6 rounded-lg ${i === 1 ? 'ring-2' : ''}`} style={i === 1 ? 'background: white; ring-color: var(--color-cyan-mid)' : 'background: white; border: 1px solid rgba(60,225,225,0.1)'}>
+                  {i === 1 && <div class="text-xs font-bold uppercase tracking-widest mb-3" style="color: var(--color-cyan-mid)">Most Common</div>}
+                  <div class="text-sm font-bold uppercase tracking-widest mb-2" style="color: var(--color-mid-gray)">{tier.label}</div>
+                  <div class="text-2xl font-black mb-3" style="color: var(--color-navy); font-family: var(--font-heading)">{tier.range}</div>
+                  <p class="text-sm leading-relaxed" style="color: var(--color-body-text)">{tier.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT AFFECTS COST -->
+  <section class="section-padding" style="background: white">
+    <div class="container-site">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12 reveal">
+          <span class="section-label">What Drives Cost</span>
+          <h2 class="text-3xl font-black" style="color: var(--color-navy)">Why Prices Vary</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-stagger">
+          {[
+            { title: 'Material Quality', desc: 'The single biggest variable. Builder-grade vs. semi-custom vs. fully custom cabinetry alone can represent a $20,000–$50,000 difference in a kitchen.' },
+            { title: 'Existing Conditions', desc: 'What we find behind the walls matters. Water damage, outdated wiring, or structural issues discovered during demolition affect cost.' },
+            { title: 'Scope Changes', desc: 'Projects that expand in scope during construction cost more. Our detailed planning process is designed to minimize surprises.' },
+            { title: 'Layout Changes', desc: 'Moving walls, plumbing, or electrical significantly increases cost. Staying within the existing footprint is almost always more cost-effective.' },
+            { title: 'Permit Complexity', desc: 'Some municipalities have more complex permitting processes than others. We factor this into every estimate.' },
+            { title: 'Timeline', desc: 'Rush projects or projects requiring weekend work may carry premium pricing. Planning ahead typically saves money.' },
+          ].map((item) => (
+            <div class="p-6 rounded-lg" style="background: var(--color-off-white); border: 1px solid rgba(60,225,225,0.08)">
+              <h3 class="font-bold mb-2" style="color: var(--color-navy); font-family: var(--font-heading)">{item.title}</h3>
+              <p class="text-sm leading-relaxed" style="color: var(--color-body-text)">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding" style="background: var(--color-navy)">
+    <div class="container-site">
+      <div class="max-w-2xl mx-auto text-center reveal">
+        <span class="section-label-light">Get Your Real Number</span>
+        <h2 class="text-3xl font-black text-white mb-6">A Free Estimate Is the Only Accurate Number</h2>
+        <p class="mb-8" style="color: rgba(255,255,255,0.7)">Ranges are helpful for planning. But the only way to know what your specific project will cost is a detailed site visit and itemized estimate — which we provide at no charge.</p>
+        <a href="/contact" class="btn-primary px-8 py-4">
+          Schedule a Free Estimate
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

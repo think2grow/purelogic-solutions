@@ -1,0 +1,113 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const faqs = [
+  {
+    category: 'Getting Started',
+    questions: [
+      { q: 'How do I get started with Pure Logic Solutions?', a: 'The first step is a free discovery call. We will spend about 30 minutes learning about your project, your goals, and your timeline. If it sounds like a good fit, we schedule an in-person site visit. There is no obligation and no pressure.' },
+      { q: 'Do you charge for estimates?', a: 'No. Our initial consultation and written estimate are completely free. We invest the time upfront because we believe you deserve a clear picture of the investment before making any decisions.' },
+      { q: 'How long does it take to receive an estimate?', a: 'You will receive a fully itemized, written estimate within 5–7 business days of the site visit. We do not rush this process — an accurate estimate requires careful review of your specific project conditions.' },
+      { q: 'What areas do you serve?', a: 'We serve the full Wasatch Front — from Ogden in the north to Santaquin in the south, and from Tooele in the west to Park City in the east. This includes Salt Lake City, Draper, Sandy, South Jordan, West Jordan, Lehi, Provo, Orem, and all surrounding communities. Projects outside this area are considered on a case-by-case basis.' },
+    ],
+  },
+  {
+    category: 'Pricing & Budget',
+    questions: [
+      { q: 'Why is Pure Logic Solutions not the cheapest option?', a: 'We are not trying to be. Our pricing reflects quality materials, skilled labor, proper permitting, and a documented process that protects your investment. Contractors who win on price alone typically cut corners somewhere — and those corners usually end up costing you more in the long run.' },
+      { q: 'What is a realistic budget for a kitchen remodel in Utah?', a: 'A mid-range kitchen remodel in Utah typically runs $40,000–$80,000. A high-end kitchen remodel can range from $80,000–$150,000+. The range depends heavily on the size of the kitchen, the quality of materials selected, and the extent of layout changes. We provide detailed, itemized estimates so you know exactly where every dollar goes.' },
+      { q: 'What is a realistic budget for a bathroom remodel?', a: 'A primary bathroom remodel typically runs $15,000–$40,000. A master bath with custom tile, a walk-in shower, and premium fixtures can run $40,000–$80,000+. A powder room or secondary bathroom is typically $8,000–$18,000.' },
+      { q: 'How do you handle unexpected costs?', a: 'All change orders are documented in writing and require your approval before any additional work proceeds. We will never do extra work and surprise you with a bill. If we discover an unexpected condition (like water damage behind a wall), we stop, document it, present you with options, and wait for your direction.' },
+      { q: 'What does your payment schedule look like?', a: 'Our payment schedule is tied to project milestones, not arbitrary dates. A typical schedule includes a deposit at contract signing, payments at key construction milestones, and a final payment at project completion. We never ask for more than 10% upfront.' },
+    ],
+  },
+  {
+    category: 'The Process',
+    questions: [
+      { q: 'Do you pull permits?', a: 'Yes, always. We pull all required permits for every project. Unpermitted work can create serious problems when you sell your home, and it can void your homeowner\'s insurance. We will never suggest skipping permits to save money.' },
+      { q: 'How long will my project take?', a: 'Timeline varies significantly by project type and scope. A bathroom remodel typically takes 3–6 weeks. A kitchen remodel typically takes 6–12 weeks. A basement finish typically takes 8–14 weeks. A home addition or custom home build can take 6–18 months. We provide a detailed timeline in your estimate and keep you updated throughout.' },
+      { q: 'Will I need to move out during construction?', a: 'For most kitchen and bathroom remodels, you can remain in your home. We take measures to contain dust and debris, protect your flooring and furniture, and maintain access to essential areas. For whole-home remodels or major additions, temporary relocation may be necessary — we will discuss this during the planning phase.' },
+      { q: 'How do you communicate during the project?', a: 'You will receive regular updates via your preferred method — text, email, or phone call. For active construction projects, we provide at minimum weekly written updates. You also have direct access to Jared throughout the project. We do not go silent.' },
+    ],
+  },
+  {
+    category: 'Quality & Warranty',
+    questions: [
+      { q: 'Are you licensed and insured?', a: 'Yes. Pure Logic Solutions holds a valid Utah General Contractor License (#14253923-5501) and carries full general liability insurance and workers\' compensation coverage. We are happy to provide certificates of insurance upon request.' },
+      { q: 'Do you offer a warranty on your work?', a: 'Yes. All Pure Logic Solutions workmanship is warranted for one year from project completion. We also pass through all manufacturer warranties on installed products. Full warranty documentation is provided at project closeout.' },
+      { q: 'How do you select your subcontractors?', a: 'Every subcontractor we use is licensed, insured, and vetted by our team. We work with a consistent network of trusted tradespeople — electricians, plumbers, HVAC technicians, and tile setters — who share our standards for quality and communication. We do not use whoever is cheapest or most available.' },
+      { q: 'What if I am not satisfied with the finished work?', a: 'We do not consider a project complete until you do. The final walkthrough is your opportunity to identify anything that does not meet the agreed specifications. We document every punch-list item and resolve it before we close out the project. If a workmanship issue arises after completion, contact us and we will address it promptly under our warranty.' },
+    ],
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.flatMap(cat => cat.questions.map(faq => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  })))
+};
+---
+
+<BaseLayout
+  title="FAQ | Pure Logic Solutions Utah General Contractor"
+  description="Answers to the most common questions about working with Pure Logic Solutions — pricing, process, timelines, permits, warranties, and more."
+  schema={schema}
+>
+
+  <!-- PAGE HERO -->
+  <section class="relative py-16 md:py-32 overflow-hidden" style="background: var(--color-navy)">
+    <div class="container-site relative z-10">
+      <div class="max-w-2xl">
+        <span class="section-label-light">Common Questions</span>
+        <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">Frequently Asked<br/><span style="color: var(--color-cyan)">Questions</span></h1>
+        <p class="text-lg leading-relaxed" style="color: rgba(255,255,255,0.75)">We believe in transparency. Here are honest answers to the questions we hear most often from Utah homeowners considering a remodeling project.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ CONTENT -->
+  <section class="section-padding" style="background: var(--color-off-white)">
+    <div class="container-site">
+      <div class="max-w-3xl mx-auto">
+        {faqs.map((category) => (
+          <div class="mb-10 md:mb-16 reveal">
+            <h2 class="text-2xl font-black mb-8 pb-4" style="color: var(--color-navy); font-family: var(--font-heading); border-bottom: 2px solid var(--color-cyan)">{category.category}</h2>
+            <div class="space-y-4">
+              {category.questions.map((faq) => (
+                <details class="group rounded-lg overflow-hidden" style="background: white; border: 1px solid rgba(60,225,225,0.1)">
+                  <summary class="flex items-center justify-between p-4 md:p-6 cursor-pointer list-none font-bold text-sm md:text-base" style="color: var(--color-navy); font-family: var(--font-heading)">
+                    <span>{faq.q}</span>
+                    <svg class="w-5 h-5 shrink-0 ml-4 transition-transform group-open:rotate-180" style="color: var(--color-cyan-mid)" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                  </summary>
+                  <div class="px-4 md:px-6 pb-4 md:pb-6 text-sm leading-relaxed" style="color: var(--color-body-text); border-top: 1px solid rgba(60,225,225,0.08)">
+                    <div class="pt-4">{faq.a}</div>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        <!-- Still have questions -->
+        <div class="p-5 md:p-8 rounded-lg text-center reveal" style="background: var(--color-navy)">
+          <h3 class="text-xl font-black text-white mb-3" style="font-family: var(--font-heading)">Still Have Questions?</h3>
+          <p class="text-sm mb-6" style="color: rgba(255,255,255,0.7)">We are happy to answer any question about your specific project. Reach out directly — we respond within 24 hours.</p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="/contact" class="btn-primary text-sm px-6 py-3">Send Us a Message</a>
+            <a href="tel:+18019058175" class="btn-ghost-white text-sm px-6 py-3">Call (801) 905-8175</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = [
+  {
+    slug: 'how-to-choose-a-general-contractor-utah',
+    title: 'How to Choose a General Contractor in Utah (Without Getting Burned)',
+    excerpt: 'The questions to ask, the red flags to watch for, and the process that protects you when hiring a contractor for your Utah home remodel.',
+    date: 'November 12, 2025',
+    category: 'Hiring a Contractor',
+    readTime: '8 min read',
+  },
+  {
+    slug: 'kitchen-remodel-cost-utah-2025',
+    title: 'What Does a Kitchen Remodel Cost in Utah in 2025?',
+    excerpt: 'Real numbers, real ranges, and the factors that drive cost up or down on a kitchen remodel in Salt Lake City, Provo, and across the Wasatch Front.',
+    date: 'December 9, 2025',
+    category: 'Pricing',
+    readTime: '6 min read',
+  },
+  {
+    slug: 'basement-finishing-utah-permits',
+    title: 'Do You Need a Permit to Finish Your Basement in Utah?',
+    excerpt: 'The short answer is yes — and here is why skipping permits is one of the most expensive mistakes Utah homeowners make.',
+    date: 'January 14, 2026',
+    category: 'Permits & Process',
+    readTime: '5 min read',
+  },
+  {
+    slug: 'bathroom-remodel-roi-utah',
+    title: 'Bathroom Remodel ROI in Utah: What You Actually Get Back',
+    excerpt: 'An honest look at the return on investment for bathroom remodels in the Utah market — and which upgrades deliver the most value.',
+    date: 'February 11, 2026',
+    category: 'ROI & Value',
+    readTime: '7 min read',
+  },
+];
+---
+
+<BaseLayout
+  title="Blog | Pure Logic Solutions Utah Contractor"
+  description="Expert advice on home remodeling, contractor selection, pricing, and project planning from Pure Logic Solutions — Utah's trusted general contractor."
+>
+
+  <!-- PAGE HERO -->
+  <section class="relative py-20 md:py-28 overflow-hidden" style="background: var(--color-navy)">
+    <div class="container-site relative z-10">
+      <div class="max-w-2xl">
+        <span class="section-label-light">Expert Advice</span>
+        <h1 class="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">The Pure Logic <span style="color: var(--color-cyan)">Blog</span></h1>
+        <p class="text-lg leading-relaxed" style="color: rgba(255,255,255,0.75)">Honest guidance on home remodeling, contractor selection, pricing, and project planning — written for Utah homeowners by people who do this work every day.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTS -->
+  <section class="section-padding" style="background: var(--color-off-white)">
+    <div class="container-site">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal-stagger">
+        {posts.map((post) => (
+          <a href={`/blog/${post.slug}`} class="card-premium group block p-8">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full" style="background: rgba(60,225,225,0.08); color: var(--color-cyan-mid)">{post.category}</span>
+              <span class="text-xs" style="color: var(--color-mid-gray)">{post.readTime}</span>
+            </div>
+            <h2 class="text-xl font-bold mb-3 leading-snug" style="color: var(--color-navy); font-family: var(--font-heading)">{post.title}</h2>
+            <p class="text-sm leading-relaxed mb-5" style="color: var(--color-body-text)">{post.excerpt}</p>
+            <div class="flex items-center justify-between">
+              <span class="text-xs" style="color: var(--color-mid-gray)">{post.date}</span>
+              <div class="flex items-center gap-2 text-sm font-semibold" style="color: var(--color-cyan-mid)">
+                Read Article
+                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

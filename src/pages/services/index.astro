@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const services = [
+  {
+    title: 'Kitchen Remodeling',
+    tagline: 'The Heart of Your Home, Reimagined',
+    description: 'From custom cabinetry and quartz countertops to full layout redesigns — we deliver kitchens that are as functional as they are beautiful.',
+    href: '/services/kitchen-remodeling',
+    image: '/images/kitchen-card.jpg',
+    alt: 'Premium kitchen remodel Utah',
+    features: ['Custom Cabinetry', 'Countertop Installation', 'Tile Backsplash', 'Appliance Integration', 'Lighting Design', 'Full Layout Redesign'],
+    roi: 'Up to 80% ROI',
+  },
+  {
+    title: 'Bathroom Remodeling',
+    tagline: 'Your Personal Retreat',
+    description: 'Create a spa-like retreat in your own home. We handle tile work, plumbing, vanities, walk-in showers, and every detail in between.',
+    href: '/services/bathroom-remodeling',
+    image: '/images/bathroom-card.jpg',
+    alt: 'Luxury bathroom remodel Utah',
+    features: ['Walk-In Showers', 'Freestanding Tubs', 'Custom Tile Work', 'Vanity Installation', 'Heated Floors', 'Plumbing Upgrades'],
+    roi: 'Up to 70% ROI',
+  },
+  {
+    title: 'Basement Finishing',
+    tagline: 'Unlock Your Home\'s Hidden Potential',
+    description: 'Unlock the potential beneath your feet. We turn unfinished basements into fully livable spaces — home theaters, gyms, guest suites, and more.',
+    href: '/services/basement-finishing',
+    image: '/images/basement-living-room.jpeg',
+    alt: 'Finished basement Utah',
+    features: ['Egress Windows', 'Framing & Drywall', 'Electrical & Plumbing', 'Flooring', 'Bathroom Addition', 'Home Theater / Gym'],
+    roi: 'Up to 75% ROI',
+  },
+  {
+    title: 'Home Additions',
+    tagline: 'More Space, Same Address',
+    description: 'Love your neighborhood but need more space? We design and build seamless additions that blend perfectly with your existing home.',
+    href: '/services/home-additions',
+    image: '/images/home-additions-card.jpg',
+    alt: 'Home addition Utah',
+    features: ['Master Suite Additions', 'Room Additions', 'Garage Conversions', 'Second Story Additions', 'Sunrooms', 'ADU Construction'],
+    roi: 'Significant Value Add',
+  },
+  {
+    title: 'Custom Home Builds',
+    tagline: 'Built Exactly the Way You Envisioned',
+    description: 'Build the home you have always envisioned, from the ground up. We manage every phase with the same transparency and precision we bring to every project.',
+    href: '/services/custom-homes',
+    image: '/images/custom-homes-card.jpg',
+    alt: 'Custom home build Utah',
+    features: ['Site Preparation', 'Foundation & Framing', 'Full Mechanical Systems', 'Interior Finishes', 'Landscaping Coordination', 'Full GC Management'],
+    roi: 'Complete Custom Build',
+  },
+  {
+    title: 'Whole Home Remodels',
+    tagline: 'Total Transformation, One Team',
+    description: 'When a single room is not enough. We coordinate complete home transformations — managing every trade, every timeline, and every detail.',
+    href: '/services/whole-home-remodels',
+    image: '/images/services-card.jpg',
+    alt: 'Whole home remodel Utah',
+    features: ['Full Interior Redesign', 'Kitchen + Bath Combo', 'Structural Changes', 'All Trade Coordination', 'Permit Management', 'Single Point of Contact'],
+    roi: 'Maximum Value Add',
+  },
+];
+---
+
+<BaseLayout
+  title="Home Remodeling Services | Pure Logic Solutions Utah"
+  description="Pure Logic Solutions offers kitchen remodeling, bathroom renovation, basement finishing, home additions, custom home builds, and whole home remodels across the Wasatch Front."
+>
+
+  <!-- PAGE HERO -->
+  <section class="relative py-24 md:py-32 overflow-hidden" style="background: var(--color-navy)">
+    <div class="absolute inset-0 z-0 opacity-20">
+      <img src="/images/services-hero.jpg" alt="" class="w-full h-full object-cover" loading="lazy" />
+    </div>
+    <div class="container-site relative z-10">
+      <div class="max-w-2xl">
+        <span class="section-label-light">Our Services</span>
+        <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">Every Project.<br/><span style="color: var(--color-cyan)">One Standard.</span></h1>
+        <p class="text-lg leading-relaxed" style="color: rgba(255,255,255,0.75)">Whether you are remodeling a single bathroom or building a custom home from the ground up, Pure Logic Solutions brings the same documented process, quality materials, and clear communication to every project.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES LIST -->
+  <section class="section-padding" style="background: var(--color-off-white)">
+    <div class="container-site">
+      <div class="space-y-12">
+        {services.map((service, index) => (
+          <div class={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center reveal ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+            <!-- Image -->
+            <div class={`rounded-lg overflow-hidden shadow-xl ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+              <img src={service.image} alt={service.alt} class="w-full h-72 lg:h-96 object-cover" loading="lazy" />
+            </div>
+            <!-- Content -->
+            <div class={index % 2 === 1 ? 'lg:order-1' : ''}>
+              <div class="flex items-center gap-3 mb-3">
+                <span class="section-label mb-0">{service.tagline}</span>
+                <span class="text-xs font-bold tracking-widest uppercase px-3 py-1 rounded-full" style="background: rgba(174,154,100,0.1); color: var(--color-cyan)">{service.roi}</span>
+              </div>
+              <h2 class="text-3xl font-black mb-4" style="color: var(--color-navy); font-family: var(--font-heading)">{service.title}</h2>
+              <div class="divider-brass"></div>
+              <p class="text-base mb-6 leading-relaxed" style="color: var(--color-body-text)">{service.description}</p>
+              <div class="grid grid-cols-2 gap-2 mb-8">
+                {service.features.map((feature) => (
+                  <div class="flex items-center gap-2 text-sm" style="color: var(--color-body-text)">
+                    <svg class="w-4 h-4 shrink-0" style="color: var(--color-cyan-mid)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                    {feature}
+                  </div>
+                ))}
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <a href={service.href} class="btn-primary text-sm">
+                  Learn More
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                <a href="/contact" class="btn-secondary text-sm">Get a Free Estimate</a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding" style="background: var(--color-navy)">
+    <div class="container-site">
+      <div class="max-w-2xl mx-auto text-center reveal">
+        <span class="section-label-light">Not Sure Where to Start?</span>
+        <h2 class="text-3xl font-black text-white mb-6">Let's Talk Through Your Project</h2>
+        <p class="mb-8" style="color: rgba(255,255,255,0.7)">Every project is different. A free discovery call is the best way to understand your options, get a realistic budget range, and see if we are the right fit for your project.</p>
+        <a href="/contact" class="btn-primary px-8 py-4">
+          Schedule a Free Discovery Call
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

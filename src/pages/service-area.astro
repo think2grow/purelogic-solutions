@@ -1,0 +1,680 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const cities = [
+  { name: 'Salt Lake City', county: 'Salt Lake County', pop: '200,000+', note: 'Primary metro — full service' },
+  { name: 'Provo', county: 'Utah County', pop: '115,000+', note: 'Full service' },
+  { name: 'Ogden', county: 'Weber County', pop: '87,000+', note: 'Northern boundary' },
+  { name: 'Orem', county: 'Utah County', pop: '98,000+', note: 'Full service' },
+  { name: 'Sandy', county: 'Salt Lake County', pop: '96,000+', note: 'Full service' },
+  { name: 'Layton', county: 'Davis County', pop: '80,000+', note: 'Full service' },
+  { name: 'South Jordan', county: 'Salt Lake County', pop: '78,000+', note: 'Full service' },
+  { name: 'Lehi', county: 'Utah County', pop: '75,000+', note: 'Full service' },
+  { name: 'Draper', county: 'Salt Lake County', pop: '50,000+', note: 'Full service' },
+  { name: 'Herriman', county: 'Salt Lake County', pop: '60,000+', note: 'Full service' },
+  { name: 'West Jordan', county: 'Salt Lake County', pop: '116,000+', note: 'Full service' },
+  { name: 'Murray', county: 'Salt Lake County', pop: '50,000+', note: 'Full service' },
+  { name: 'Taylorsville', county: 'Salt Lake County', pop: '60,000+', note: 'Full service' },
+  { name: 'Riverton', county: 'Salt Lake County', pop: '45,000+', note: 'Full service' },
+  { name: 'Bluffdale', county: 'Salt Lake County', pop: '15,000+', note: 'Full service' },
+  { name: 'Saratoga Springs', county: 'Utah County', pop: '35,000+', note: 'Full service' },
+  { name: 'Eagle Mountain', county: 'Utah County', pop: '45,000+', note: 'Full service' },
+  { name: 'American Fork', county: 'Utah County', pop: '35,000+', note: 'Full service' },
+  { name: 'Pleasant Grove', county: 'Utah County', pop: '40,000+', note: 'Full service' },
+  { name: 'Lindon', county: 'Utah County', pop: '12,000+', note: 'Full service' },
+  { name: 'Vineyard', county: 'Utah County', pop: '15,000+', note: 'Full service' },
+  { name: 'Spanish Fork', county: 'Utah County', pop: '42,000+', note: 'Full service' },
+  { name: 'Springville', county: 'Utah County', pop: '35,000+', note: 'Full service' },
+  { name: 'Santaquin', county: 'Utah County', pop: '12,000+', note: 'Southern boundary' },
+  { name: 'Park City', county: 'Summit County', pop: '8,000+', note: 'Eastern boundary' },
+  { name: 'Tooele', county: 'Tooele County', pop: '35,000+', note: 'Western boundary' },
+  { name: 'Bountiful', county: 'Davis County', pop: '45,000+', note: 'Full service' },
+  { name: 'Kaysville', county: 'Davis County', pop: '32,000+', note: 'Full service' },
+  { name: 'Farmington', county: 'Davis County', pop: '25,000+', note: 'Full service' },
+  { name: 'Centerville', county: 'Davis County', pop: '18,000+', note: 'Full service' },
+  { name: 'North Salt Lake', county: 'Davis County', pop: '22,000+', note: 'Full service' },
+  { name: 'Clearfield', county: 'Davis County', pop: '32,000+', note: 'Full service' },
+  { name: 'Syracuse', county: 'Davis County', pop: '30,000+', note: 'Full service' },
+  { name: 'Clinton', county: 'Davis County', pop: '22,000+', note: 'Full service' },
+  { name: 'Roy', county: 'Weber County', pop: '38,000+', note: 'Full service' },
+  { name: 'West Haven', county: 'Weber County', pop: '16,000+', note: 'Full service' },
+];
+
+const countyData = {
+  weber:    { label: 'Weber County',     color: '#1E6978', cities: ['Ogden', 'Roy', 'West Haven'], note: 'Northern boundary of our service area', badge: 'NORTH ANCHOR' },
+  davis:    { label: 'Davis County',     color: '#1E9696', cities: ['Layton', 'Bountiful', 'Farmington', 'Kaysville', 'Clearfield', 'Syracuse'], note: 'Full service — all cities', badge: 'FULL SERVICE' },
+  saltlake: { label: 'Salt Lake County', color: '#3CE1E1', cities: ['Salt Lake City', 'Sandy', 'West Jordan', 'South Jordan', 'Murray', 'Draper', 'Herriman'], note: 'Primary metro — highest project volume', badge: 'PRIMARY METRO' },
+  utah:     { label: 'Utah County',      color: '#2BBFBF', cities: ['Provo', 'Orem', 'Lehi', 'American Fork', 'Spanish Fork', 'Springville', 'Santaquin'], note: 'Southern boundary of our service area', badge: 'SOUTH ANCHOR' },
+};
+---
+
+<BaseLayout
+  title="Service Area | Pure Logic Solutions Utah Contractor"
+  description="Pure Logic Solutions serves the full Wasatch Front — from Ogden to Santaquin and Tooele to Park City. Kitchen remodeling, bathroom renovation, and general contracting across Utah."
+>
+
+  <!-- PAGE HERO -->
+  <section class="relative py-16 md:py-32 overflow-hidden" style="background: var(--color-navy)">
+    <div class="container-site relative z-10">
+      <div class="max-w-2xl">
+        <span class="section-label-light">Where We Work</span>
+        <h1 class="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">Serving the<br/><span style="color: var(--color-cyan)">Wasatch Front</span></h1>
+        <p class="text-lg leading-relaxed" style="color: rgba(255,255,255,0.75)">From Ogden in the north to Santaquin in the south — Pure Logic Solutions serves the full Wasatch Front corridor.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA OVERVIEW -->
+  <section class="section-padding" style="background: var(--color-off-white)">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16 items-start mb-16">
+
+        <!-- LEFT: Copy + boundary cards -->
+        <div class="reveal-left">
+          <span class="section-label">Our Coverage Area</span>
+          <h2 class="text-3xl font-black mb-6" style="color: var(--color-navy)">Local Contractor. Local Knowledge.</h2>
+          <div class="divider-brass"></div>
+          <p class="text-base leading-relaxed mb-6" style="color: var(--color-body-text)">Pure Logic Solutions is a locally owned and operated general contractor serving the Wasatch Front. We are not a franchise or a large regional company — we are your neighbors, and we understand the specific building codes, permit requirements, and climate considerations that affect construction in Utah.</p>
+          <p class="text-base leading-relaxed mb-8" style="color: var(--color-body-text)">Our primary service area covers Salt Lake, Utah, Davis, and Weber counties. Projects outside this area are considered on a case-by-case basis — contact us to discuss your specific location.</p>
+          <div class="grid grid-cols-2 gap-4">
+            {[
+              { label: 'Northern Boundary', value: 'Ogden / Weber County' },
+              { label: 'Southern Boundary', value: 'Santaquin / Utah County' },
+              { label: 'Western Boundary', value: 'Tooele / Tooele County' },
+              { label: 'Eastern Boundary', value: 'Park City / Summit County' },
+            ].map((item) => (
+              <div class="p-4 rounded-lg" style="background: white; border: 1px solid rgba(60,225,225,0.1)">
+                <div class="text-xs font-bold uppercase tracking-widest mb-1" style="color: var(--color-mid-gray)">{item.label}</div>
+                <div class="text-sm font-bold" style="color: var(--color-navy)">{item.value}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- RIGHT: Interactive SVG Map Module -->
+        <div class="reveal-right">
+          <div id="sa-module">
+
+            <!-- ── INTERACTIVE SVG MAP ── -->
+            <div id="sa-map-container">
+
+              <!-- County band: WEBER -->
+              <div class="sa-band" data-county="weber" tabindex="0" role="button" aria-label="Weber County — Ogden, Roy, West Haven. Click to explore.">
+                <div class="sa-band-inner">
+                  <div class="sa-band-label-row">
+                    <span class="sa-band-tag">NORTH</span>
+                    <span class="sa-band-badge" data-badge="weber">NORTH ANCHOR</span>
+                  </div>
+                  <div class="sa-band-name">Weber County</div>
+                  <div class="sa-band-cities">Ogden, Roy, West Haven</div>
+                </div>
+                <div class="sa-band-indicator" data-indicator="weber"></div>
+              </div>
+
+              <!-- Divider -->
+              <div class="sa-divider"></div>
+
+              <!-- County band: DAVIS -->
+              <div class="sa-band" data-county="davis" tabindex="0" role="button" aria-label="Davis County — Layton, Bountiful, Farmington. Click to explore.">
+                <div class="sa-band-inner">
+                  <div class="sa-band-label-row">
+                    <span class="sa-band-badge" data-badge="davis">FULL SERVICE</span>
+                  </div>
+                  <div class="sa-band-name">Davis County</div>
+                  <div class="sa-band-cities">Layton, Bountiful, Farmington</div>
+                </div>
+                <div class="sa-band-indicator" data-indicator="davis"></div>
+              </div>
+
+              <!-- Divider -->
+              <div class="sa-divider"></div>
+
+              <!-- County band: SALT LAKE (tallest — primary metro) -->
+              <div class="sa-band sa-band--primary" data-county="saltlake" tabindex="0" role="button" aria-label="Salt Lake County — Salt Lake City, Sandy, West Jordan. Primary metro. Click to explore.">
+                <div class="sa-band-inner">
+                  <div class="sa-band-label-row">
+                    <span class="sa-band-badge sa-band-badge--primary" data-badge="saltlake">PRIMARY METRO</span>
+                  </div>
+                  <div class="sa-band-name">Salt Lake County</div>
+                  <div class="sa-band-cities">Salt Lake City, Sandy, West Jordan</div>
+                </div>
+                <div class="sa-band-indicator" data-indicator="saltlake"></div>
+              </div>
+
+              <!-- Divider -->
+              <div class="sa-divider"></div>
+
+              <!-- County band: UTAH -->
+              <div class="sa-band" data-county="utah" tabindex="0" role="button" aria-label="Utah County — Provo, Orem, Lehi. Click to explore.">
+                <div class="sa-band-inner">
+                  <div class="sa-band-label-row">
+                    <span class="sa-band-badge" data-badge="utah">SOUTH ANCHOR</span>
+                  </div>
+                  <div class="sa-band-name">Utah County</div>
+                  <div class="sa-band-cities">Provo, Orem, Lehi</div>
+                </div>
+                <div class="sa-band-indicator" data-indicator="utah"></div>
+                <div class="sa-south-label">SOUTH</div>
+              </div>
+
+              <!-- Compass rose overlay -->
+              <div class="sa-compass" aria-hidden="true">
+                <svg viewBox="0 0 40 40" width="40" height="40">
+                  <circle cx="20" cy="20" r="18" fill="none" stroke="rgba(60,225,225,0.25)" stroke-width="1"/>
+                  <polygon points="20,4 22.5,14 20,11 17.5,14" fill="#3CE1E1"/>
+                  <polygon points="20,36 22.5,26 20,29 17.5,26" fill="rgba(255,255,255,0.3)"/>
+                  <polygon points="4,20 14,17.5 11,20 14,22.5" fill="rgba(255,255,255,0.3)"/>
+                  <polygon points="36,20 26,17.5 29,20 26,22.5" fill="rgba(255,255,255,0.3)"/>
+                  <text x="20" y="1" text-anchor="middle" font-size="7" fill="#3CE1E1" font-family="Inter,sans-serif" font-weight="700" dominant-baseline="hanging">N</text>
+                </svg>
+              </div>
+            </div><!-- /#sa-map-container -->
+
+            <!-- ── DYNAMIC INFO PANEL (updates on hover/click) ── -->
+            <div id="sa-info-panel" aria-live="polite" aria-atomic="true">
+              <div id="sa-info-default" class="sa-info-default">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                <span>Hover or tap a county to explore cities we serve</span>
+              </div>
+              <div id="sa-info-active" class="sa-info-active" style="display:none">
+                <div class="sa-info-header">
+                  <div class="sa-info-dot" id="sa-info-dot"></div>
+                  <div>
+                    <div class="sa-info-county-name" id="sa-info-name"></div>
+                    <div class="sa-info-note" id="sa-info-note"></div>
+                  </div>
+                </div>
+                <div class="sa-info-cities" id="sa-info-cities"></div>
+              </div>
+            </div>
+
+            <!-- ── COUNTY CHIPS ── -->
+            <div class="sa-chips" role="list" aria-label="Service area counties">
+              <button class="sa-chip" data-county="weber"    type="button">
+                <span class="sa-chip-dot" style="background:#1E6978"></span>Weber County
+              </button>
+              <button class="sa-chip" data-county="davis"    type="button">
+                <span class="sa-chip-dot" style="background:#1E9696"></span>Davis County
+              </button>
+              <button class="sa-chip" data-county="saltlake" type="button">
+                <span class="sa-chip-dot" style="background:#3CE1E1"></span>Salt Lake County
+              </button>
+              <button class="sa-chip" data-county="utah"     type="button">
+                <span class="sa-chip-dot" style="background:#2BBFBF"></span>Utah County
+              </button>
+            </div>
+
+          </div><!-- /#sa-module -->
+        </div><!-- /.reveal-right -->
+      </div>
+
+      <!-- CITIES TABLE -->
+      <div class="reveal">
+        <h2 class="text-2xl font-black mb-8" style="color: var(--color-navy); font-family: var(--font-heading)">Cities We Serve</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {cities.map((city) => (
+            <div class="flex items-center justify-between p-4 rounded-lg" style="background: white; border: 1px solid rgba(60,225,225,0.08)">
+              <div>
+                <div class="font-bold text-sm" style="color: var(--color-navy)">{city.name}</div>
+                <div class="text-xs" style="color: var(--color-mid-gray)">{city.county}</div>
+              </div>
+              <span class="text-xs px-2 py-1 rounded-full font-medium" style={city.note.includes('boundary') ? 'background: rgba(60,225,225,0.1); color: var(--color-cyan)' : 'background: rgba(60,225,225,0.08); color: var(--color-cyan-mid)'}>
+                {city.note.includes('boundary') ? city.note : 'Full Service'}
+              </span>
+            </div>
+          ))}
+        </div>
+        <p class="mt-6 text-sm text-center" style="color: var(--color-mid-gray)">Don't see your city? <a href="/contact" class="font-semibold" style="color: var(--color-cyan-mid)">Contact us</a> — we consider projects outside our primary area on a case-by-case basis.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCAL EXPERTISE -->
+  <section class="section-padding" style="background: white">
+    <div class="container-site">
+      <div class="text-center mb-12 reveal">
+        <span class="section-label">Why Local Matters</span>
+        <h2 class="text-3xl font-black" style="color: var(--color-navy)">Utah-Specific Expertise</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal-stagger">
+        {[
+          { title: 'Utah Building Codes', desc: 'We know the specific permit requirements, inspection processes, and code interpretations for every municipality on the Wasatch Front.', icon: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z' },
+          { title: 'Utah Climate Considerations', desc: 'From freeze-thaw cycles to high desert humidity, we build for Utah\'s specific climate — proper insulation, moisture barriers, and materials that hold up long-term.', icon: 'M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z' },
+          { title: 'Trusted Local Network', desc: 'Our subcontractor network is built from years of working on the Wasatch Front. Every trade partner is licensed, insured, and vetted for quality.', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
+        ].map((item) => (
+          <div class="p-8 rounded-lg text-center" style="background: var(--color-off-white); border: 1px solid rgba(60,225,225,0.08)">
+            <div class="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5" style="background: rgba(60,225,225,0.1)">
+              <svg class="w-7 h-7" style="color: var(--color-cyan-mid)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={item.icon}/></svg>
+            </div>
+            <h3 class="text-lg font-bold mb-3" style="color: var(--color-navy); font-family: var(--font-heading)">{item.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-body-text)">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-padding" style="background: var(--color-navy)">
+    <div class="container-site">
+      <div class="max-w-2xl mx-auto text-center reveal">
+        <span class="section-label-light">Ready to Start?</span>
+        <h2 class="text-3xl font-black text-white mb-6">Get a Free Estimate in Your Area</h2>
+        <p class="mb-8" style="color: rgba(255,255,255,0.7)">We serve your community and understand your local building requirements. Contact us today for a free, no-obligation estimate.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="btn-primary px-8 py-4">
+            Get a Free Estimate
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+          <a href="tel:+18019058175" class="btn-ghost-white px-8 py-4">Call (801) 905-8175</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    /* ── Module wrapper ── */
+    #sa-module {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    /* ── Map container ── */
+    #sa-map-container {
+      position: relative;
+      background: #0D1B2A;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(60,225,225,0.15);
+      box-shadow: 0 8px 40px rgba(13,27,42,0.5), 0 0 0 1px rgba(60,225,225,0.08);
+    }
+
+    /* ── County band ── */
+    .sa-band {
+      position: relative;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s ease, border-left-color 0.2s ease;
+      border-left: 4px solid transparent;
+      outline: none;
+      user-select: none;
+    }
+
+    .sa-band--primary {
+      padding-top: 1.5rem;
+      padding-bottom: 1.5rem;
+    }
+
+    /* Default subtle tint per county */
+    .sa-band[data-county="weber"]    { background: rgba(30,105,120,0.18); border-left-color: rgba(30,105,120,0.4); }
+    .sa-band[data-county="davis"]    { background: rgba(30,150,150,0.18); border-left-color: rgba(30,150,150,0.4); }
+    .sa-band[data-county="saltlake"] { background: rgba(60,225,225,0.18); border-left-color: rgba(60,225,225,0.4); }
+    .sa-band[data-county="utah"]     { background: rgba(43,191,191,0.18); border-left-color: rgba(43,191,191,0.4); }
+
+    /* ACTIVE state — triggered by JS */
+    .sa-band.is-active[data-county="weber"]    { background: rgba(30,105,120,0.55);  border-left-color: #1E6978; }
+    .sa-band.is-active[data-county="davis"]    { background: rgba(30,150,150,0.55);  border-left-color: #1E9696; }
+    .sa-band.is-active[data-county="saltlake"] { background: rgba(60,225,225,0.45);  border-left-color: #3CE1E1; }
+    .sa-band.is-active[data-county="utah"]     { background: rgba(43,191,191,0.50);  border-left-color: #2BBFBF; }
+
+    /* Focus ring */
+    .sa-band:focus-visible {
+      outline: 2px solid #3CE1E1;
+      outline-offset: -2px;
+    }
+
+    /* ── Band inner content ── */
+    .sa-band-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .sa-band-label-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .sa-band-tag {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(60,225,225,0.6);
+      font-family: var(--font-body);
+    }
+
+    .sa-band-badge {
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.15rem 0.5rem;
+      border-radius: 9999px;
+      background: rgba(60,225,225,0.12);
+      color: rgba(60,225,225,0.7);
+      border: 1px solid rgba(60,225,225,0.2);
+      font-family: var(--font-body);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .sa-band-badge--primary {
+      background: rgba(60,225,225,0.2);
+      color: #3CE1E1;
+      border-color: rgba(60,225,225,0.4);
+    }
+
+    .sa-band.is-active .sa-band-badge {
+      background: rgba(60,225,225,0.25);
+      color: #3CE1E1;
+      border-color: rgba(60,225,225,0.5);
+    }
+
+    .sa-band-name {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: white;
+      font-family: var(--font-heading);
+      letter-spacing: -0.02em;
+      transition: color 0.2s ease;
+    }
+
+    .sa-band.is-active .sa-band-name {
+      color: #ffffff;
+      text-shadow: 0 0 20px rgba(60,225,225,0.4);
+    }
+
+    .sa-band-cities {
+      font-size: 0.8125rem;
+      color: rgba(255,255,255,0.55);
+      font-family: var(--font-body);
+      margin-top: 0.15rem;
+      transition: color 0.2s ease;
+    }
+
+    .sa-band.is-active .sa-band-cities {
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ── Right-side indicator dot ── */
+    .sa-band-indicator {
+      position: absolute;
+      right: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    [data-indicator="weber"]    { background: #1E6978; }
+    [data-indicator="davis"]    { background: #1E9696; }
+    [data-indicator="saltlake"] { background: #3CE1E1; }
+    [data-indicator="utah"]     { background: #2BBFBF; }
+
+    .sa-band.is-active .sa-band-indicator {
+      transform: translateY(-50%) scale(1.6);
+      box-shadow: 0 0 0 4px rgba(60,225,225,0.2), 0 0 12px rgba(60,225,225,0.4);
+    }
+
+    /* ── Divider ── */
+    .sa-divider {
+      height: 1px;
+      background: rgba(60,225,225,0.1);
+      margin: 0 1.5rem;
+    }
+
+    /* ── South label ── */
+    .sa-south-label {
+      position: absolute;
+      bottom: 0.5rem;
+      left: 1.5rem;
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(60,225,225,0.4);
+      font-family: var(--font-body);
+    }
+
+    /* ── Compass rose ── */
+    .sa-compass {
+      position: absolute;
+      top: 1rem;
+      right: 2.5rem;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    /* ── Info panel ── */
+    #sa-info-panel {
+      background: white;
+      border-radius: 12px;
+      border: 1px solid rgba(60,225,225,0.15);
+      padding: 1rem 1.25rem;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+    }
+
+    .sa-info-default {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-mid-gray);
+      font-size: 0.875rem;
+      font-family: var(--font-body);
+      width: 100%;
+    }
+
+    .sa-info-default svg {
+      flex-shrink: 0;
+      color: var(--color-cyan-mid);
+    }
+
+    .sa-info-active {
+      width: 100%;
+    }
+
+    .sa-info-header {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .sa-info-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .sa-info-county-name {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--color-navy);
+      font-family: var(--font-heading);
+    }
+
+    .sa-info-note {
+      font-size: 0.75rem;
+      color: var(--color-mid-gray);
+      font-family: var(--font-body);
+    }
+
+    .sa-info-cities {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.375rem;
+    }
+
+    .sa-city-tag {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      background: var(--color-off-white);
+      color: var(--color-body-text);
+      font-family: var(--font-body);
+      font-weight: 500;
+      border: 1px solid var(--color-warm-gray);
+    }
+
+    .sa-city-sep {
+      font-size: 0.75rem;
+      color: var(--color-mid-gray);
+      font-family: var(--font-body);
+      align-self: center;
+      line-height: 1;
+      margin: 0 -0.1rem;
+    }
+
+    /* ── Chips ── */
+    .sa-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .sa-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.875rem;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(60,225,225,0.2);
+      background: white;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--color-navy);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-height: 40px;
+    }
+
+    .sa-chip:hover,
+    .sa-chip:focus-visible,
+    .sa-chip.is-active {
+      background: var(--color-navy);
+      color: white;
+      outline: none;
+    }
+
+    .sa-chip[data-county="weber"].is-active    { border-color: #1E6978; box-shadow: 0 0 0 2px #1E6978; }
+    .sa-chip[data-county="davis"].is-active    { border-color: #1E9696; box-shadow: 0 0 0 2px #1E9696; }
+    .sa-chip[data-county="saltlake"].is-active { border-color: #3CE1E1; box-shadow: 0 0 0 2px #3CE1E1; }
+    .sa-chip[data-county="utah"].is-active     { border-color: #2BBFBF; box-shadow: 0 0 0 2px #2BBFBF; }
+
+    .sa-chip:focus-visible {
+      outline: 2px solid #3CE1E1;
+      outline-offset: 2px;
+    }
+
+    .sa-chip-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── Reduced motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      .sa-band, .sa-band-indicator, .sa-chip, .sa-band-badge, .sa-band-name, .sa-band-cities {
+        transition: none;
+      }
+    }
+  </style>
+
+  <script>
+    (function () {
+      // County data for the info panel
+      const data = {
+        weber:    { label: 'Weber County',     color: '#1E6978', note: 'Northern boundary of our service area', cities: ['Ogden', 'Roy', 'West Haven'] },
+        davis:    { label: 'Davis County',     color: '#1E9696', note: 'Full service — all cities covered',    cities: ['Layton', 'Bountiful', 'Farmington', 'Kaysville', 'Clearfield', 'Syracuse', 'Clinton'] },
+        saltlake: { label: 'Salt Lake County', color: '#3CE1E1', note: 'Primary metro — highest project volume', cities: ['Salt Lake City', 'Sandy', 'West Jordan', 'South Jordan', 'Murray', 'Draper', 'Herriman', 'Taylorsville', 'Riverton'] },
+        utah:     { label: 'Utah County',      color: '#2BBFBF', note: 'Southern boundary of our service area', cities: ['Provo', 'Orem', 'Lehi', 'American Fork', 'Spanish Fork', 'Springville', 'Santaquin', 'Pleasant Grove'] },
+      };
+
+      // Elements
+      const bands = document.querySelectorAll('.sa-band');
+      const chips = document.querySelectorAll('.sa-chip');
+      const infoDefault = document.getElementById('sa-info-default');
+      const infoActive  = document.getElementById('sa-info-active');
+      const infoName    = document.getElementById('sa-info-name');
+      const infoNote    = document.getElementById('sa-info-note');
+      const infoCities  = document.getElementById('sa-info-cities');
+      const infoDot     = document.getElementById('sa-info-dot');
+
+      let currentCounty = null;
+
+      function activate(countyId) {
+        if (currentCounty === countyId) return;
+        currentCounty = countyId;
+
+        // Update band active states
+        bands.forEach(b => {
+          b.classList.toggle('is-active', b.dataset.county === countyId);
+        });
+
+        // Update chip active states
+        chips.forEach(c => {
+          c.classList.toggle('is-active', c.dataset.county === countyId);
+        });
+
+        // Update info panel
+        const d = data[countyId];
+        if (d && infoName && infoNote && infoCities && infoDot && infoDefault && infoActive) {
+          infoName.textContent = d.label;
+          infoNote.textContent = d.note;
+          infoDot.style.background = d.color;
+          infoCities.innerHTML = d.cities
+            .map(c => `<span class="sa-city-tag">${c}</span>`)
+            .join('<span class="sa-city-sep">,</span>');
+          infoDefault.style.display = 'none';
+          infoActive.style.display  = 'block';
+        }
+      }
+
+      function deactivate() {
+        currentCounty = null;
+        bands.forEach(b => b.classList.remove('is-active'));
+        chips.forEach(c => c.classList.remove('is-active'));
+        if (infoDefault && infoActive) {
+          infoDefault.style.display = 'flex';
+          infoActive.style.display  = 'none';
+        }
+      }
+
+      // ── Wire bands ──
+      bands.forEach(band => {
+        const id = band.dataset.county;
+        if (!id) return;
+        band.addEventListener('mouseenter', () => activate(id));
+        band.addEventListener('mouseleave', deactivate);
+        band.addEventListener('focus',      () => activate(id));
+        band.addEventListener('blur',       deactivate);
+        band.addEventListener('click',      () => activate(id));
+        band.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(id); }
+          if (e.key === 'Escape') deactivate();
+        });
+      });
+
+      // ── Wire chips ──
+      chips.forEach(chip => {
+        const id = chip.dataset.county;
+        if (!id) return;
+        chip.addEventListener('mouseenter', () => activate(id));
+        chip.addEventListener('mouseleave', deactivate);
+        chip.addEventListener('focus',      () => activate(id));
+        chip.addEventListener('blur',       deactivate);
+        chip.addEventListener('click',      () => activate(id));
+        chip.addEventListener('keydown', e => {
+          if (e.key === 'Escape') deactivate();
+        });
+      });
+    })();
+  </script>
+
+</BaseLayout>

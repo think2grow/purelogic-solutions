@@ -1,0 +1,225 @@
+---
+import '../styles/global.css';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  schema?: object;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  ogImage = '/images/og-default.jpg',
+  canonicalUrl,
+  schema,
+  noindex = false,
+} = Astro.props;
+
+const siteUrl = 'https://purelogicsolutionsutah.com';
+const canonical = canonicalUrl ?? `${siteUrl}${Astro.url.pathname}`;
+const fullTitle = title.includes('Pure Logic') ? title : `${title} | Pure Logic Solutions`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Primary Meta -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    <meta property="og:site_name" content="Pure Logic Solutions" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+
+    <!-- Geo / Local -->
+    <meta name="geo.region" content="US-UT" />
+    <meta name="geo.placename" content="Salt Lake City, Utah" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#0D1B2A" />
+
+    <!-- Fonts: Satoshi + Inter via Bunny Fonts (GDPR-friendly) -->
+    <link rel="preconnect" href="https://fonts.bunny.net" />
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&family=satoshi:400,500,700,900&display=swap" rel="stylesheet" />
+
+    <!-- JSON-LD Schema -->
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+
+    <!-- Default LocalBusiness Schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "GeneralContractor",
+      "name": "Pure Logic Solutions",
+      "description": "Premium home remodeling and general contracting services in Utah. Kitchen remodeling, bathroom renovation, basement finishing, home additions, and custom homes.",
+      "url": siteUrl,
+      "telephone": "+18019058175",
+      "email": "Purelogicsolutionsutah@gmail.com",
+      "founder": {
+        "@type": "Person",
+        "name": "Jared Bayless"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Salt Lake City",
+        "addressRegion": "UT",
+        "addressCountry": "US"
+      },
+      "areaServed": [
+        "Salt Lake City, UT", "Draper, UT", "Sandy, UT", "South Jordan, UT",
+        "West Jordan, UT", "Lehi, UT", "Provo, UT", "Orem, UT", "Murray, UT",
+        "Midvale, UT", "Herriman, UT", "Riverton, UT", "Bluffdale, UT",
+        "Pleasant Grove, UT", "American Fork, UT", "Springville, UT",
+        "Spanish Fork, UT", "Ogden, UT", "Layton, UT", "Bountiful, UT",
+        "Park City, UT", "Tooele, UT", "Santaquin, UT"
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+          "opens": "07:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "08:00",
+          "closes": "16:00"
+        }
+      ],
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Utah General Contractor License",
+        "credentialCategory": "license",
+        "recognizedBy": {
+          "@type": "GovernmentOrganization",
+          "name": "Utah Division of Occupational and Professional Licensing"
+        },
+        "identifier": "14253923-5501"
+      },
+      "sameAs": [
+        "https://www.facebook.com/purelogicsolutions",
+        "https://www.instagram.com/purelogicsolutions",
+        "https://www.linkedin.com/company/purelogicsolutions"
+      ]
+    })} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- GSAP -->
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Animate all .reveal elements
+      document.querySelectorAll('.reveal').forEach((el) => {
+        gsap.fromTo(el,
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none none',
+            }
+          }
+        );
+      });
+
+      // Animate .reveal-left elements
+      document.querySelectorAll('.reveal-left').forEach((el) => {
+        gsap.fromTo(el,
+          { opacity: 0, x: -40 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.9,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none none',
+            }
+          }
+        );
+      });
+
+      // Animate .reveal-right elements
+      document.querySelectorAll('.reveal-right').forEach((el) => {
+        gsap.fromTo(el,
+          { opacity: 0, x: 40 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.9,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 88%',
+              toggleActions: 'play none none none',
+            }
+          }
+        );
+      });
+
+      // Stagger children with .reveal-stagger class
+      document.querySelectorAll('.reveal-stagger').forEach((container) => {
+        const children = container.querySelectorAll(':scope > *');
+        gsap.fromTo(children,
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.12,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: container,
+              start: 'top 85%',
+              toggleActions: 'play none none none',
+            }
+          }
+        );
+      });
+    </script>
+  </body>
+</html>

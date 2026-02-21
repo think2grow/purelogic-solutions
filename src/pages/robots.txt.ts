@@ -5,7 +5,7 @@ export const GET: APIRoute = () => {
 Allow: /
 
 # Sitemap
-Sitemap: https://purelogicsolutions.com/sitemap.xml
+Sitemap: https://purelogic-solutions.com/sitemap-index.xml
 
 # Disallow admin/internal paths if any
 Disallow: /api/

@@ -21,7 +21,7 @@ const {
   noindex = false,
 } = Astro.props;
 
-const siteUrl = 'https://purelogic-solutions.com';
+const siteUrl = 'https://purelogicsolutionsutah.com';
 const canonical = canonicalUrl ?? `${siteUrl}${Astro.url.pathname}`;
 const fullTitle = title.includes('Pure Logic') ? title : `${title} | Pure Logic Solutions`;
 ---
@@ -69,16 +69,6 @@ const fullTitle = title.includes('Pure Logic') ? title : `${title} | Pure Logic 
     <!-- Fonts: Satoshi + Inter via Bunny Fonts (GDPR-friendly) -->
     <link rel="preconnect" href="https://fonts.bunny.net" />
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&family=satoshi:400,500,700,900&display=swap" rel="stylesheet" />
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF64WTR72N"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-WF64WTR72N');
-    </script>
 
     <!-- JSON-LD Schema -->
     {schema && (

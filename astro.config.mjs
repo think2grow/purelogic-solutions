@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://purelogic-solutions.com',
+  site: 'https://purelogicsolutionsutah.com',
   output: 'static',
   integrations: [
     react(),

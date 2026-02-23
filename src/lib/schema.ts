@@ -4,10 +4,10 @@
 export const BUSINESS = {
   name: 'Pure Logic Solutions',
   legalName: 'Pure Logic Solutions LLC',
-  url: 'https://purelogic-solutions.com',
-  logo: 'https://purelogic-solutions.com/logo.png',
+  url: 'https://purelogicsolutions.com',
+  logo: 'https://purelogicsolutions.com/logo.png',
   phone: '+18019058175',
-  email: 'jared@purelogic-solutions.com',
+  email: 'jared@purelogicsolutions.com',
   founder: 'Jared Bayless',
   license: '14253923-5501',
   rating: 4.9,
